@@ -1,3 +1,9 @@
-Object(){
+class Object{
 
+  
+  
+  
+  
+  
+  
 }

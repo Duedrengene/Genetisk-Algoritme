@@ -3,9 +3,11 @@ int totalbefolkning = 200;
 DNA[] befolkning;
 ArrayList<DNA> parringspool;
 String target;//Dette er i gram(5kg = 5000g) 
+DataLoader dL = new DataLoader();
 
 
 void setup() {
+  dL.loadData();
   size(800,800);
 target="5.000g";
 mutationrate=0.02;
@@ -19,7 +21,7 @@ befolkning = new DNA[totalbefolkning];
 
 void draw() {
    selektion();
-  reproduktion();
+//  reproduktion();
 
 }
 void selektion(){
