@@ -1,6 +1,5 @@
 float mutationrate;
 int totalbefolkning = 200;
-
 DNA[] befolkning;
 ArrayList<DNA> parringspool;
 String target;//Dette er i gram(5kg = 5000g) 
