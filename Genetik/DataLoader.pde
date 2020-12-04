@@ -8,7 +8,12 @@ DataLoader(){}
 void loadData(){
 csvTable = loadTable("objectData.csv","header");
 
-for(csvTable.row)
+for(TableRow row : csvTable.rows()){
+
+  
+
+
+}
 
 }
 
