@@ -1,6 +1,6 @@
 class DataLoader{
 
-  ArrayList<Object> allObjects = new ArrayList();
+  
   Table csvTable;
   
 DataLoader(){}

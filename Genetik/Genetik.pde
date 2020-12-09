@@ -1,13 +1,14 @@
 float mutationRate;
 int totalPopulation = 200;
 DNA[] population;
-ArrayList<DNA> pairPool = new ArrayList<DNA>();;
+ArrayList<DNA> pairPool = new ArrayList<DNA>();
 String target;//Dette er i gram(5kg = 5000g) 
 DataLoader dL = new DataLoader();
-
+ArrayList<Object> allObjects = new ArrayList();
 
 void setup() {
   dL.loadData();
+  
   size(800,800);
 target="5.000g";
 mutationRate=0.02;
