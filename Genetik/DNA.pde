@@ -34,7 +34,6 @@ void fitness(){
     }
     return barn;
    
-   //return barn;
 
 }
 void mutate(float mutationrate) {

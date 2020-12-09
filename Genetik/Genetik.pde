@@ -1,7 +1,7 @@
-float mutationrate;
-int totalbefolkning = 200;
-DNA[] befolkning;
-ArrayList<DNA> parringspool;
+float mutationRate;
+int totalPopulation = 200;
+DNA[] population;
+ArrayList<DNA> pairPool = new ArrayList<DNA>();;
 String target;//Dette er i gram(5kg = 5000g) 
 DataLoader dL = new DataLoader();
 
@@ -10,45 +10,45 @@ void setup() {
   dL.loadData();
   size(800,800);
 target="5.000g";
-mutationrate=0.02;
+mutationRate=0.02;
 
-befolkning = new DNA[totalbefolkning];
-  for(int j = 0; j < befolkning.length; j++) {
-      befolkning[j] = new DNA();
+population = new DNA[totalPopulation];
+  for(int j = 0; j < population.length; j++) {
+      population[j] = new DNA();
   }
 
 }
 
 void draw() {
-   selektion();
-//  reproduktion();
+   selection();
+  //reproduction();
 
 }
-void selektion(){
-  for(int i =0; i<befolkning.length; i++) {
-    befolkning[i].fitness();
+void selection(){
+  for(int i =0; i<population.length; i++) {
+    population[i].fitness();
   }
   
    //Her oprettes parringspoolen.
-  ArrayList<DNA> parringspool = new ArrayList<DNA>();
+  ArrayList<DNA> newPairPool = new ArrayList<DNA>();
   
-  for(int m = 0; m < befolkning.length; m++){  
-  int x = int(befolkning[m].fitness*100);
+  for(int m = 0; m < population.length; m++){  
+  int x = int(population[m].fitness*100);
   
   for(int n = 0; n<x; n++) {
-  parringspool.add(befolkning[m]);
+  newPairPool.add(population[m]);
   }    
   }
 }
-void reproduktion(){
+void reproduction(){
     
-  for(int i= 0; i <befolkning.length; i++) {
-    int far = int(random(parringspool.size()));
-    int mor=  int(random(parringspool.size()));
-    DNA parentFar = parringspool.get(far);
-    DNA parentMor = parringspool.get(mor);
-    DNA barn = parentFar.crossover(parentMor);
-    barn.mutate(mutationrate);
-    befolkning[i] = barn;
+  for(int i= 0; i <population.length; i++) {
+    int father = int(random(pairPool.size()));
+    int mother=  int(random(pairPool.size()));
+    DNA parentFather = pairPool.get(father);
+    DNA parentMother = pairPool.get(mother);
+    DNA child = parentFather.crossover(parentMother);
+    child.mutate(mutationRate);
+    population[i] = child;
 }
 }
