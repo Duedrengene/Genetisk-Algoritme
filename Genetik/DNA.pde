@@ -1,20 +1,20 @@
 class DNA {
-char[] gener;
+char[] genes;
 float fitness;
 //Disse skal bruges til backpacken.
 StringList backpack = new StringList();
-Float [] backpackvalue;
+Float [] backpackValue;
 
 DNA() {
-gener = new char[target.length()];
-for(int i=0;i <gener.length; i++) {
-  gener[i] = (char)random(32,64);
+genes = new char[target.length()];
+for(int i=0;i <genes.length; i++) {
+  genes[i] = (char)random(32,64);
 }
 }
 void fitness(){
   int result=0;
-  for(int i =0; i < gener.length; i++) {
-  if(gener[i] == target.charAt(i)) {
+  for(int i =0; i < genes.length; i++) {
+  if(genes[i] == target.charAt(i)) {
     result++;
   }
  }
@@ -23,23 +23,23 @@ void fitness(){
 }
 //Her oprettes der crossover i programmet.
  DNA crossover(DNA parent) {
-   DNA barn = new DNA();  
-  //DNA barn = new DNA(gener.length);
-    int midpunkt = int(random(gener.length));
-    for (int i = 0; i < gener.length; i++) {
-      if (i > midpunkt) barn.gener[i] = gener[i];
+   DNA child = new DNA();  
+ //DNA child = new DNA(gener.length);
+    int middlePoint = int(random(genes.length));
+    for (int i = 0; i < genes.length; i++) {
+      if (i > middlePoint) child.genes[i] = genes[i];
       
       else
-      barn.gener[i] = parent.gener[i];
+      child.genes[i] = parent.genes[i];
     }
-    return barn;
+    return child;
    
 
 }
-void mutate(float mutationrate) {
-   for (int i = 0; i < gener.length; i++) {
-      if (random(1) < mutationrate) {
-        gener[i] = (char) random(16,64);
+void mutate(float mutationRate) {
+   for (int i = 0; i < genes.length; i++) {
+      if (random(1) < mutationRate) {
+        genes[i] = (char) random(16,64);
 
 }
 }
