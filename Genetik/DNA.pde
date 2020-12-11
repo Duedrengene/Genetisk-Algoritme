@@ -2,33 +2,47 @@ class DNA {
 ArrayList<Object> genes = new ArrayList();
 float fitness =0;
 int totalWeight = 0;
+int index;
+boolean biggestCoolDude = false;
 //Disse skal bruges til backpacken.
 
 
-DNA() {
+DNA(int index) {
   startingGenes();
-fitness =fitness();
+  this.index = index;
+
+println(index);
 }
 
-int fitness(){
+boolean fitness(){
 int result =0;
+boolean result2 = -1;
 //println (genes.size()+"Mathias LUGTEr");
   for(int i =0;genes.size() >i;i++){
   result += genes.get(i).price;
 // println(result+" lugt");
   }
-  return result;
+  if (result > highestFitness)
+  highestFitness = result;
+  if (result > highestCurrentFitness){
+  highestCurrentFitness = result;
+  result2 = true;
+  }
+  totalFitness += result;
+  fitness = result;
+  //println(index);
+  return result2;
 }
 
 void startingGenes(){
 ArrayList<Object> newObjects = new ArrayList();
 newObjects.addAll(allObjects);
 
-while(totalWeight< 5000){
+while(totalWeight< maxWeight){
   //println(newObjects.size());
   int random =(int)random(0,newObjects.size());
   
-if(totalWeight + newObjects.get(random).weight> 5000)
+if(totalWeight + newObjects.get(random).weight> maxWeight)
 break;
 totalWeight += newObjects.get(random).weight;
 genes.add(newObjects.get(random));
@@ -40,23 +54,50 @@ newObjects.remove(random);
 }
 
 //Her oprettes der crossover i programmet.
- DNA crossover(DNA parent) {
-   DNA child = new DNA();  
+ DNA crossover(DNA parent,int index) {
+   DNA child = new DNA(index);  
  //DNA child = new DNA(gener.length);
-    int middlePoint = int(random(0,genes.size()));
-    for (int i = 0; i < genes.size()-1; i++) {
-      if (i > middlePoint) 
-      child.genes.set(i,genes.get(i));
-      else
-      child.genes.set(i,parent.genes.get(i));
-    }
+ int childTotalWeight = 0;
+ int counter =0;
+    while(childTotalWeight< maxWeight){
+    //  println(counter);
+      if (counter > 10)break;
+      int random = (int)random(0,2);
+      
+      if(random ==0){
+        int random2 = (int)random(0,genes.size());
+        if(!(childTotalWeight +genes.get(random2).weight  > maxWeight )){
+          if(!child.genes.contains(genes.get(random2))){
+      child.genes.add(genes.get(random2));
+      childTotalWeight += genes.get(random2).weight;
+          }
+          else counter ++;
+        }
+        else break;
+      }
+      else{
+        int random2 = (int)random(0,parent.genes.size());
+        if(!(childTotalWeight +parent.genes.get(random2).weight  > maxWeight )){
+          if(!child.genes.contains(parent.genes.get(random2))){
+      child.genes.add(parent.genes.get(random2));
+      childTotalWeight += parent.genes.get(random2).weight;
+          }  else counter ++;
+      }
+        else break;
+      }
+    }  
+  
+    
     return child;
    
 
 }
 
 void drawDNA(int index){
-text(genes.size(),500,500);
+text("Highest Fitness = " + highestFitness,350,500);
+text("Highest Current Fitness = " + highestCurrentFitness,100,500);
+text("Average Fitness = " + totalFitness/totalPopulation,500,500);
+//println(population.size());
 for(int i =0;i<genes.size();i++){
 text(genes.get(i).name + ": "+genes.get(i).price, (index)*150,(i+1) *10 );
 
@@ -72,14 +113,10 @@ void mutate(float mutationRate) {
       if (random(1) < mutationRate) {
           int random = (int)random(0,allObjects.size());
         boolean check = true;
-        while(check){
+        
           
-        if (!genes.contains(allObjects.get(random)))
-        check = false;
-        
-        }
-        
-        genes.set(i,allObjects.get(random)) ;
+        if(!genes.contains(allObjects.get(random)))
+ genes.set(i,allObjects.get(random)) ;
 
 }
 }
