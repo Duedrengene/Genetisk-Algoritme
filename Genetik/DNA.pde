@@ -6,17 +6,23 @@ int index;
 boolean biggestCoolDude = false;
 //Disse skal bruges til backpacken.
 
+DNA(ArrayList<Object> genes ){
+this.genes = genes;
+}
+
+  
 
 DNA(int index) {
   startingGenes();
   this.index = index;
 
-println(index);
+//println(index);
 }
 
-boolean fitness(){
+ArrayList<Object> fitness(){
 int result =0;
-boolean result2 = -1;
+ArrayList<Object> result2 = new ArrayList();
+
 //println (genes.size()+"Mathias LUGTEr");
   for(int i =0;genes.size() >i;i++){
   result += genes.get(i).price;
@@ -25,12 +31,14 @@ boolean result2 = -1;
   if (result > highestFitness)
   highestFitness = result;
   if (result > highestCurrentFitness){
+    println(result +" "+highestCurrentFitness);
   highestCurrentFitness = result;
-  result2 = true;
+  result2.addAll(genes);
   }
   totalFitness += result;
   fitness = result;
   //println(index);
+  
   return result2;
 }
 
@@ -93,8 +101,11 @@ newObjects.remove(random);
 
 }
 
-void drawDNA(int index){
+void drawDNA(int index,DNA primeSpecimen){
 text("Highest Fitness = " + highestFitness,350,500);
+for(int i = 0;i<primeSpecimen.genes.size();i++){
+text(primeSpecimen.genes.get(i).name,350,520 +(i*20));
+}
 text("Highest Current Fitness = " + highestCurrentFitness,100,500);
 text("Average Fitness = " + totalFitness/totalPopulation,500,500);
 //println(population.size());

@@ -14,7 +14,7 @@ DNA primeSpecimen;
 void setup() {
   frameRate = 144;
   dL.loadData();
-  
+  primeSpecimen= new DNA(-1);
   size(800,800);
 target="5.000g";
 mutationRate=0.02;
@@ -27,7 +27,7 @@ mutationRate=0.02;
 
 background(0);
     for(int i =0; i< totalPopulation;i++){
-   population.get(i).drawDNA(i);
+   population.get(i).drawDNA(i,primeSpecimen);
  }
 }
 
@@ -40,9 +40,14 @@ void draw() {
 void selection(){
   pairPool.clear();
   for(int i =0; i<population.size(); i++) {
-    biggestCoolDude = population.get(i).fitness();
-
-  
+    ArrayList<Object> primeSpecimenTemp = population.get(i).fitness();
+    if(primeSpecimenTemp.size() >0){
+      println("Bruh");
+      primeSpecimen.genes.clear();
+    primeSpecimen.genes.addAll(primeSpecimenTemp);
+    
+    }
+  }
    //Her oprettes parringspoolen.
   
   for(int i = 0; i < population.size(); i++){  
@@ -51,7 +56,8 @@ void selection(){
   for(int i2 = 0; i2<x; i2++) {
   pairPool.add(population.get(i));
   }    
-  }
+  
+}
 }
 void reproduction(){
     
@@ -76,7 +82,6 @@ void mousePressed(){
 selection();
 reproduction();
     for(int i =0; i< totalPopulation;i++){
-   population.get(i).drawDNA(i);
+   population.get(i).drawDNA(i,primeSpecimen);
  }
-
 }
