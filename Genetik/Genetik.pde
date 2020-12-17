@@ -76,6 +76,7 @@ void reproduction(){
 void mousePressed(){
   clear();
    background(0);
+   System.out.println(highestFitness);
    highestCurrentFitness =0;
  averageFitness=0;
  totalFitness =0;

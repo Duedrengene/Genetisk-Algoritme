@@ -102,12 +102,12 @@ newObjects.remove(random);
 }
 
 void drawDNA(int index,DNA primeSpecimen){
-text("Highest Fitness = " + highestFitness,350,500);
+text("Highest Fitness = " + highestFitness,350,300);
 for(int i = 0;i<primeSpecimen.genes.size();i++){
-text(primeSpecimen.genes.get(i).name,350,520 +(i*20));
+text(primeSpecimen.genes.get(i).name,350,320 +(i*20));
 }
-text("Highest Current Fitness = " + highestCurrentFitness,100,500);
-text("Average Fitness = " + totalFitness/totalPopulation,500,500);
+text("Highest Current Fitness = " + highestCurrentFitness,100,300);
+text("Average Fitness = " + totalFitness/totalPopulation,500,300);
 //println(population.size());
 for(int i =0;i<genes.size();i++){
 text(genes.get(i).name + ": "+genes.get(i).price, (index)*150,(i+1) *10 );
