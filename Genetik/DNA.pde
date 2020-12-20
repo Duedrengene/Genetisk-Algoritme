@@ -49,6 +49,7 @@ DNA(){};
   }
 
   void startingGenes() {
+    // Her skabes starting gener,  og dette vælges tilfældigt.
     ArrayList<Object> newObjects = new ArrayList();
     newObjects.addAll(allObjects);
 
@@ -68,17 +69,16 @@ DNA(){};
   //Her oprettes der crossover i programmet.
   DNA crossover(DNA parent, int index) {
     DNA child = new DNA();  
-    //DNA child = new DNA(gener.length);
     int childTotalWeight = 0;
     int counter =0;
     
     while (childTotalWeight< maxWeight) {
-      //  println(counter);
+   
               
 
       if (counter > 10)break;
       int random = (int)random(0, 2);
-
+//Den ene forældre.
       if (random ==0) {
         int random2 = (int)random(0, genes.size());
         if (!(childTotalWeight +genes.get(random2).weight  > maxWeight )) {
@@ -90,6 +90,7 @@ DNA(){};
         
         break;}
       } else {
+        // Den anden forældre. ( man skal være 2 forældre for at skabe et barn).
         int random2 = (int)random(0, parent.genes.size());
         if (!(childTotalWeight +parent.genes.get(random2).weight  > maxWeight )) {
           if (!child.genes.contains(parent.genes.get(random2))) {
@@ -111,7 +112,8 @@ DNA(){};
 
     return child;
   }
-
+//Her i dette afsnit er det tegnelse af data, herunder hvad den nuværende generations data består af.
+//Printer ud og visualisere det via text.
   void drawDNA(int index, DNA primeSpecimen) {
     text("Highest Fitness = " + highestFitness, 450, 300);
     
@@ -132,7 +134,7 @@ DNA(){};
     text(fitness, (index)*150, (genes.size()+1)*10);
   }
 
-
+//Her foregår mutationen for algoritmen.
   void mutate(float mutationRate) {
     int counter =totalWeight;
     for (int i = 0; i < genes.size(); i++) {
