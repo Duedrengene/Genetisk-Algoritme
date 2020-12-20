@@ -27,10 +27,10 @@ DNA(){};
     int result =0;
     ArrayList<Object> result2 = new ArrayList();
 
-    //println (genes.size()+"Mathias LUGTEr");
+    
     for (int i =0; genes.size() >i; i++) {
       result += genes.get(i).price;
-      // println(result+" lugt");
+      
     }
     if (result > highestFitness){
       highestFitness = result;
