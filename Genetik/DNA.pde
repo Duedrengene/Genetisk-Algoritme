@@ -1,7 +1,7 @@
 class DNA {
   
   ArrayList<Object> genes = new ArrayList();
-  float fitness =0;
+  int fitness =0;
   int totalWeight = 0;
   int index;
   boolean biggestCoolDude = false;
@@ -36,6 +36,7 @@ DNA(){};
       highestFitness = result;
             result2.addAll(genes);
       println(result +" "+highestCurrentFitness);
+      
     }
     if (result > highestCurrentFitness) {
       highestCurrentFitness = result;
