@@ -1,4 +1,4 @@
-float mutationRate; //<>// //<>//
+float mutationRate; //<>//
 int totalPopulation = 500;
 int totalFitness;
 int highestFitness;
@@ -15,7 +15,7 @@ DNA primeSpecimen;
 Graph graph = new Graph();
 
 void setup() {
-  
+  //Her skabes mållet og mutationsrate til proccesen.
   frameRate = 144;
   dL.loadData();
   primeSpecimen= new DNA(-1,false);
@@ -51,7 +51,7 @@ void selection() {
       primeSpecimenCheck(i);
     }
   
-  //Her oprettes parringspoolen.
+  //Her oprettes parringspoolen ud fra population.
 
   for (int i = 0; i < population.size(); i++) {  
     int x = int(population.get(i).fitness*100);
@@ -62,21 +62,23 @@ void selection() {
   }
 }
 void reproduction() {
-
+//Dette er reprodukionsafsnittet til af skabe børn i  algortimen.
   for (int i= 0; i <population.size(); i++) {
     int father = int(random(pairPool.size()));
     int mother=  int(random(pairPool.size()));
     DNA parentFather = pairPool.get(father);
     DNA parentMother = pairPool.get(mother);
     DNA child = parentFather.crossover(parentMother, i);
+    //Crossover a far og mor. Herefter muterer den.
     child.totalWeight = parentFather.totalWeight;
     child.mutate(mutationRate);
+    //Her bliver den nye population børn.
     population.set(i, child);
   }
 }
 
 void primeSpecimenCheck(int i){
-
+//Her i denne funktion, vælges der gode gener i form af fitness, "Lidt på en måde survival of the fittest"
     ArrayList<Object> primeSpecimenTemp = population.get(i).fitness();
     if (primeSpecimenTemp.size() >0) {
       println("Bruh");
@@ -96,7 +98,7 @@ void primeSpecimenCheck(int i){
 
 
 void mousePressed() {
-  
+  //Her bruges disse funktioner via klik, som er årsagen til at programmet fungere via klik hvor den skaber ny d"data".
   clear();
   background(0);
   
