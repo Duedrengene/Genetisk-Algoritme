@@ -1,5 +1,6 @@
 class DataLoader {
-
+//Her i dette afsnit loades værdierne fra muligheder der kan være i rygsækken, herunder med pris,vægt og navn.
+//Dette loades i en CSV fil fordi det var nemmest, og mindre hardcoding....
   Table csvTable;
 
   DataLoader() {
